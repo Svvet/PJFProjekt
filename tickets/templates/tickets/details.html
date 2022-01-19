@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}<title>{{play.title}}</title>{% endblock %}
+</head>
+<body>
+<a href="{% url 'tickets:index' %}">Powrót</a>
+{% if play %}
+<h1>{{play.title}}</h1>
+<ul>
+    {% for perf in perf_set %}
+
+    <li>
+        <p>{{perf.perf_date}}</p>
+        <a href="{% url 'tickets:details' perf.id %}">abc</a>
+    </li>
+    {% endfor %}
+</ul>
+<h1>{{Play.objects.all}}</h1>
+{% else %}
+eeee
+{% endif %}
+
+</body>
+</html>

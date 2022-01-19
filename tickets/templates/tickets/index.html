@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Wszystkie sztuki</title>
+</head>
+<body>
+<h1>Wszystkie wystawiane sztuki</h1>
+{% if plays_list %}
+<ul>
+    {% for play in plays_list %}
+    <li><a href="{% url 'tickets:details' play.id %}">{{ play.title }} liczba przedstawień
+        {{play.performance_set.all.count}}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
+</body>
+</html>
