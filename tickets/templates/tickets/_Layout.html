@@ -1,0 +1,66 @@
+{% load static %}
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teatr</title>
+    <link rel="stylesheet" href={% static "css/styles.css" %} />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'tickets:index' %}">Teatr</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+
+                        {% if user.is_authenticated %}
+
+                         <li class="nav-item">
+                            <a class="nav-link text-dark pjflink" href="{% url 'tickets:logout' %}">Wyloguj</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" >Zalogowano jako {{user}}</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link text-dark pjflink" href="{% url 'tickets:login' %}">Logowanie</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark pjflink" href="{% url 'tickets:register' %}">Rejestracja</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+
+        <main role="main" class="pb-3">
+{% block content %} {% endblock %}
+
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - Teatr - Krzysztof Trepka
+        </div>
+    </footer>
+
+</body>
+</html>

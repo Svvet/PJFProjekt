@@ -1,18 +1,34 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <title>Wszystkie sztuki</title>
-</head>
-<body>
-<h1>Wszystkie wystawiane sztuki</h1>
-{% if plays_list %}
-<ul>
-    {% for play in plays_list %}
-    <li><a href="{% url 'tickets:details' play.id %}">{{ play.title }} liczba przedstawień
-        {{play.performance_set.all.count}}</a></li>
-    {% endfor %}
-</ul>
-{% endif %}
-</body>
-</html>
+{% extends "tickets/_Layout.html" %}
+{% load static %}
+{% block content %}
+    <h1 class="index-title">Wszystkie wystawiane sztuki</h1>
+    {% if plays_list %}
+        <div class="container">
+            {% for play in plays_list %}
+                <a href="{% url 'tickets:details' play.id %}">
+                    <div class="play-item row">
+                        <div class="col-lg-5 img-container">
+                            <img src="{% static 'img/1.jpg' %}" width="100%"/>
+                        </div>
+                        <div class="col-lg-7">
+                            <ul>
+                                <li>
+                                    {{ play }}
+                                </li>
+                                <li>
+                                    {{ play.genre }}
+                                </li>
+                                <li>
+                                    {{ play.author }}
+                                </li>
+                                <li>
+                                    Liczba przedstawień: {{ play.performance_set.all.count }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

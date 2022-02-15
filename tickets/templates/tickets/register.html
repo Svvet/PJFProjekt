@@ -1,0 +1,30 @@
+{% extends "tickets/_Layout.html" %}
+{% block content %}
+<h1>Rejestracja</h1>
+<div class="container">
+    <form action="register" method="post">
+        {% csrf_token %}
+        <div class="form-row">
+            <label for="firstname">Imię</label>
+            <input type="text" class="form-control" id="firstname" name="firstname" >
+        </div>
+        <div class="form-row">
+            <label for="lastname">Nazwisko</label>
+            <input type="text" class="form-control" id="lastname" name="lastname">
+        </div>
+        <div class="form-row">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="form-row">
+            <label for="username">Nazwa użytkownika</label>
+            <input type="text" class="form-control" id="username" name="username">
+        </div>
+        <div class="form-row">
+            <label for="password">Hasło</label>
+            <input type="password" class="form-control" id="password" name="password">
+        </div>
+        <button type="submit" class="btn btn-primary register-button">Zarejestruj</button>
+    </form>
+</div>
+{%endblock%}

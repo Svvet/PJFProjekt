@@ -1,0 +1,21 @@
+.play-item {
+    margin: 10px;
+    border-bottom: black 1px solid;
+    padding-bottom: 10px;
+}
+
+.play-item:hover {
+    background-color: azure;
+}
+
+.img-container {
+    padding-left: 0px;
+}
+
+.register-button {
+    margin-top: 10px;
+}
+
+.pjflink:hover {
+    background-color: #9efffc;
+}

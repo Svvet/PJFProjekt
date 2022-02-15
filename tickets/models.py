@@ -45,6 +45,7 @@ class Performance(models.Model):
 
 class Ticket(models.Model):
     performance = models.ForeignKey(Performance, on_delete=models.CASCADE)
-    seat = models.IntegerField();
+    seat = models.IntegerField()
+    row = models.IntegerField(default=None)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)

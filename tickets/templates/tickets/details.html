@@ -1,26 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    {% block title %}<title>{{play.title}}</title>{% endblock %}
-</head>
-<body>
+{% extends "tickets/_Layout.html" %}
+{% load static %}
+{% block content %}
 <a href="{% url 'tickets:index' %}">Powrót</a>
 {% if play %}
-<h1>{{play.title}}</h1>
-<ul>
-    {% for perf in perf_set %}
+<div class="container">
+    <h1>{{play.title}}</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{% static 'img/1.jpg' %}" width="100%"/>
+        </div>
+        <div class="col-md-6">
+            <ul>
+                <li>
+                    {{ play }}
+                </li>
+                <li>
+                    {{ play.genre }}
+                </li>
+                <li>
+                    {{ play.author }}
+                </li>
+            </ul>
+            <ul>
+                {% for perf in perf_set %}
 
-    <li>
-        <p>{{perf.perf_date}}</p>
-        <a href="{% url 'tickets:details' perf.id %}">abc</a>
-    </li>
-    {% endfor %}
-</ul>
-<h1>{{Play.objects.all}}</h1>
+                <li>
+                    <a href="{% url 'tickets:details' perf.id %}">{{perf.perf_date}}</a>
+                </li>
+                 <li>
+                    Sala {{perf.hall.name}}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <h1>{{Play.objects.all}}</h1>
+</div>
 {% else %}
 eeee
 {% endif %}
-
-</body>
-</html>
+{% endblock %}
