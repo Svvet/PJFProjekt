@@ -1,0 +1,39 @@
+{% extends "tickets/_Layout.html" %}
+{% load static %}
+{% block content %}
+        <div class="container">
+
+        {% for ticket in tickets %}
+            <div class="row">
+                <ul>
+                    <li>
+                        Imię: {{ ticket.first_name }}
+                    </li>
+                    <li>
+                        Nazwisko: {{ ticket.last_name }}
+                    </li>
+                    <li>
+                        Sztuka: {{ ticket.performance.play }}
+                    </li>
+                    <li>
+                        Miejsce: {{ ticket.seat }}
+                    </li>
+                    <li>
+                        Sala: {{ ticket.performance.hall.name }}
+                    </li>
+                    <li>
+                        Cena: {{ ticket.performance.price }} zł
+                    </li>
+                    <li>
+                        {% if ticket.reservation %}
+                            Rezerwacja
+                        {% else %}
+                            Bilet kupiony
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        {% endfor %}
+
+        </div>
+{% endblock %}

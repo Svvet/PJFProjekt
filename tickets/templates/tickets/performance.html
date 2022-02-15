@@ -1,0 +1,63 @@
+{% extends "tickets/_Layout.html" %}
+{% load static %}
+{% block content %}
+    {% if performance %}
+        <div class="container">
+            <h1>{{ performance.play.title }}</h1>
+        <h3>Cena: {{ performance.price }} zł</h3>
+            <div class="row">
+                <div class="col-md-7">
+                    <img src="{% static 'img/1.jpg' %}" width="100%"/>
+                </div>
+                <div class="col-md-5">
+                    <ul>
+                        <li>
+                            "{{ performance.play }}"
+                        </li>
+                        <li>
+                            {{ performance.play.genre }}
+                        </li>
+                        <li>
+                            {{ performance.play.author }}
+                        </li>
+                    </ul>
+                    <form action="{% url 'tickets:addTicket' %}" method="post">
+                    {% csrf_token %}
+                        <div class="form-group">
+                            <label for="seat">Miejsce</label>
+                            <select class="form-control" id="seat" name="seat">
+                                {% for seat in available_seats %}
+                                    <option value="{{ seat }}">{{ seat }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="reservation">Rezerwacja/Kupno</label>
+                            <select class="form-control" id="reservation" name="reservation">
+                                <option value="1">Rezerwacja</option>
+                                <option value="0">Kupno</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-check-input" type="checkbox" id="diff-name" name="diff-name">
+                            <label class="form-check-label" for="diff-name">
+                                Inne imię i nazwisko
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="first-name">Imię</label>
+                            <input type="text" class="form-control" id="first-name" name="first-name">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="last-name">Nazwisko</label>
+                            <input type="text" class="form-control" id="last-name" name="last-name">
+                        </div>
+                    <input type="hidden" id="perf_id" name="perf_id" value="{{ performance.id }}">
+                        <button class="btn btn-primary">Wyślij</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    {% endif %}
+{% endblock %}

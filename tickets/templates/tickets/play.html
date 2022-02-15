@@ -1,0 +1,48 @@
+{% extends "tickets/_Layout.html" %}
+{% load static %}
+{% block content %}
+    <a href="{% url 'tickets:index' %}">Powrót</a>
+    {% if play %}
+        <div class="container">
+            <h1>{{ play.title }}</h1>
+            <div class="row">
+                <div class="col-md-7">
+                    <img src="{% static 'img/1.jpg' %}" width="100%"/>
+                </div>
+                <div class="col-md-5">
+                    <ul>
+                        <li>
+                            "{{ play }}"
+                        </li>
+                        <li>
+                            {{ play.genre }}
+                        </li>
+                        <li>
+                            {{ play.author }}
+                        </li>
+                    </ul>
+
+                        {% for perf in perf_set %}
+
+                            <div class="mb-5">
+                            <a href="{% url 'tickets:performance' perf.id %}" >
+                                <ul>
+                            <li>
+                                {{ perf.perf_date }}
+                            </li>
+                            <li>
+                                Sala {{ perf.hall.name }} ({{ perf.hall.seats }})
+                            </li>
+                                    </ul>
+                            </a>
+                            </div>
+                        {% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+    {% else %}
+        eeee
+    {% endif %}
+{% endblock %}

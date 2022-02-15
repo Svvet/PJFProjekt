@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Genre(models.Model):
     title = models.CharField(max_length=200)
@@ -38,6 +38,7 @@ class Performance(models.Model):
     play = models.ForeignKey(Play, on_delete=models.CASCADE)
     hall = models.ForeignKey(Hall, on_delete=models.CASCADE, default=1)
     perf_date = models.DateTimeField("Performance date")
+    price = models.FloatField(default=99.99)
 
     def __str__(self):
         return "Id: " + str(self.pk) + "; Sztuka: " + self.play.title + "; Sala: " + self.hall.name
@@ -46,6 +47,7 @@ class Performance(models.Model):
 class Ticket(models.Model):
     performance = models.ForeignKey(Performance, on_delete=models.CASCADE)
     seat = models.IntegerField()
-    row = models.IntegerField(default=None)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    reservation = models.BooleanField()

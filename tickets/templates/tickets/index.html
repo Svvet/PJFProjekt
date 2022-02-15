@@ -5,7 +5,7 @@
     {% if plays_list %}
         <div class="container">
             {% for play in plays_list %}
-                <a href="{% url 'tickets:details' play.id %}">
+                <a href="{% url 'tickets:play' play.id %}">
                     <div class="play-item row">
                         <div class="col-lg-5 img-container">
                             <img src="{% static 'img/1.jpg' %}" width="100%"/>

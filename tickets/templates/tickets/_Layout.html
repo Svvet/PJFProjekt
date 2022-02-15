@@ -17,7 +17,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" href="{% url 'tickets:index' %}">Teatr</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -30,17 +30,20 @@
                         {% if user.is_authenticated %}
 
                          <li class="nav-item">
-                            <a class="nav-link text-dark pjflink" href="{% url 'tickets:logout' %}">Wyloguj</a>
+                            <a class="nav-link text-light pjflink" href="{% url 'tickets:logout' %}">Wyloguj</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" >Zalogowano jako {{user}}</a>
+                            <a class="nav-link text-light" >Zalogowano jako {{user}}</a>
                         </li>
+                            <li>
+                             <a class="nav-link text-light" href="{% url 'tickets:myTickets' %}">Moje bilety</a>
+                            </li>
                         {% else %}
                         <li class="nav-item">
-                            <a class="nav-link text-dark pjflink" href="{% url 'tickets:login' %}">Logowanie</a>
+                            <a class="nav-link text-light pjflink" href="{% url 'tickets:login' %}">Logowanie</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark pjflink" href="{% url 'tickets:register' %}">Rejestracja</a>
+                            <a class="nav-link text-light pjflink" href="{% url 'tickets:register' %}">Rejestracja</a>
                         </li>
                         {% endif %}
                     </ul>
@@ -56,7 +59,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-light bg-dark">
         <div class="container">
             &copy; 2022 - Teatr - Krzysztof Trepka
         </div>
